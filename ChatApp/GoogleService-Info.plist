@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>299355730796-g20eubfmkklhbrbpieha7qaa3c8a6frf.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.299355730796-g20eubfmkklhbrbpieha7qaa3c8a6frf</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1yAl-CBDjfqSsKWy9yNaTXfc6KCZ06SI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>299355730796</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cristian.ChatApp</string>
+	<key>PROJECT_ID</key>
+	<string>chatapp-bbeee</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chatapp-bbeee.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:299355730796:ios:e789a040b8f2180e877949</string>
+	<key>DATABASE_URL</key>
+	<string>https://chatapp-bbeee.firebaseio.com</string>
+</dict>
+</plist>
