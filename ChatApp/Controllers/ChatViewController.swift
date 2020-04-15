@@ -29,10 +29,11 @@ class ChatViewController: UIViewController {
         
         self.messageTextField.delegate = self
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(messagesTableViewTapped))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideMessageZone))
         self.messagesTableView.addGestureRecognizer(tapGesture)
     }
     
+    // MARK: Firebase Method
     @IBAction func logOutPressed(_ sender: UIButton) {
         
         do {
@@ -50,10 +51,31 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        // Esta linea es opcional, si queremos que el usuario
+        // escriba mas de una linea la quitamos
+        self.messageTextField.endEditing(true)
         
+        messageTextField.isEnabled = false
+        sendButton.isEnabled = false
+        
+        let messageDB = Database.database().reference().child("Messages")
+        let messageDic = ["sender" : Auth.auth().currentUser?.email,
+                          "body" : self.messageTextField.text!]
+        
+        messageDB.childByAutoId().setValue(messageDic) { (error, ref) in
+            
+            if error != nil {
+                print(error!)
+            } else {
+                print("save message")
+                self.messageTextField.isEnabled = true
+                self.sendButton.isEnabled = true
+                self.messageTextField.text = ""
+            }
+        }
     }
     
-    @objc func messagesTableViewTapped() {
+    @objc func hideMessageZone() {
         
         self.messageTextField.resignFirstResponder()
         
@@ -97,12 +119,12 @@ extension ChatViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        messagesTableViewTapped()
+        hideMessageZone()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
+        textField.endEditing(true)
         return true
     }
 }

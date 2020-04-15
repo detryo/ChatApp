@@ -147,11 +147,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbL-Fq-rvm">
                                 <rect key="frame" x="0.0" y="796" width="414" height="100"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HJT-LZ-vID">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HJT-LZ-vID">
                                         <rect key="frame" x="0.0" y="20" width="414" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Send Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AWM-Sa-EKY">
-                                                <rect key="frame" x="0.0" y="0.0" width="368" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="334" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="fkx-nf-1xu"/>
                                                 </constraints>
@@ -159,10 +159,10 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U8-vV-U2H">
-                                                <rect key="frame" x="378" y="0.0" width="36" height="30"/>
+                                                <rect key="frame" x="344" y="0.0" width="70" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="15W-yO-7zA"/>
-                                                    <constraint firstAttribute="width" constant="36" id="zcj-JP-DCJ"/>
+                                                    <constraint firstAttribute="width" constant="70" id="zcj-JP-DCJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <state key="normal" title="Send">
@@ -174,6 +174,9 @@
                                             </button>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="AWM-Sa-EKY" firstAttribute="top" secondItem="HJT-LZ-vID" secondAttribute="top" id="G5f-cv-npS"/>
+                                            <constraint firstAttribute="bottom" secondItem="AWM-Sa-EKY" secondAttribute="bottom" id="T2P-Hc-D3C"/>
+                                            <constraint firstItem="AWM-Sa-EKY" firstAttribute="leading" secondItem="HJT-LZ-vID" secondAttribute="leading" id="dc5-Ej-WXz"/>
                                             <constraint firstAttribute="height" constant="30" id="xpJ-q7-vRW"/>
                                         </constraints>
                                     </stackView>
