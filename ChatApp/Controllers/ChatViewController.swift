@@ -16,21 +16,20 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textBoxHeight: NSLayoutConstraint!
     
-    let messageArray : [Message] = []
+    var messageArray : [Message] = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.messagesTableView.dataSource = self
         self.messagesTableView.delegate = self
-        self.messagesTableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
-        self.messagesTableView.rowHeight = UITableView.automaticDimension
-        self.messagesTableView.estimatedRowHeight = 120
-        
         self.messageTextField.delegate = self
         
+        self.messagesTableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideMessageZone))
         self.messagesTableView.addGestureRecognizer(tapGesture)
+        configureTableView()
+        retriveMessagesFromFirebase()
     }
     
     // MARK: Firebase Method
@@ -83,6 +82,31 @@ class ChatViewController: UIViewController {
             self.textBoxHeight.constant = 80
             self.view.layoutIfNeeded()
         }
+    }
+    // establecemos un observador del evento childAdded de la base de datos Messages de Firebase
+    // para saber cuando se añade un nuevo mensaje a dicha tabla del servidor
+    func retriveMessagesFromFirebase() {
+        
+        let messagesDB = Database.database().reference().child("Messages")
+        
+        messagesDB.observe(.childAdded) { (snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            
+            let sender = snapshotValue["sender"]!
+            let body = snapshotValue["body"]!
+            let message = Message(sender: sender, body: body)
+            self.messageArray.append(message)
+            
+            self.configureTableView()
+            self.messagesTableView.reloadData()
+        }
+    }
+    // Establece el tamaño correcto para cada una de las celdas de la tabla
+    func configureTableView() {
+        
+        self.messagesTableView.rowHeight = UITableView.automaticDimension
+        self.messagesTableView.estimatedRowHeight = 120
     }
 }
 
