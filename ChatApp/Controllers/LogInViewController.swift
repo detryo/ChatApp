@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class LogInViewController: UIViewController {
     
@@ -29,16 +30,16 @@ class LogInViewController: UIViewController {
         guard let email = emailTextField.text else {
             return
         }
-        
+        SVProgressHUD.show()
         Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
             
             if error != nil {
                 print(error!)
             } else {
                 print("Login con exito")
+                SVProgressHUD.dismiss()
                 self.performSegue(withIdentifier: "fromLogInToChat", sender: self)
             }
         }
     }
-    
 }

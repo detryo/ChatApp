@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import ChameleonFramework
 
 class ChatViewController: UIViewController {
     
@@ -16,7 +17,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var textBoxHeight: NSLayoutConstraint!
     
-    var messageArray : [Message] = [Message]()
+   // var messageArray : [Message] = [Message]()
+    var messageArray = ArraySlice<Message>()
+    var numberOfMessage = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +31,11 @@ class ChatViewController: UIViewController {
         self.messagesTableView.register(UINib(nibName: "MessageTableViewCell", bundle: nil), forCellReuseIdentifier: "MessageCell")
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideMessageZone))
         self.messagesTableView.addGestureRecognizer(tapGesture)
+        self.messagesTableView.separatorStyle = .none
+        
         configureTableView()
         retriveMessagesFromFirebase()
+        
     }
     
     // MARK: Firebase Method
@@ -97,6 +103,7 @@ class ChatViewController: UIViewController {
             let body = snapshotValue["body"]!
             let message = Message(sender: sender, body: body)
             self.messageArray.append(message)
+            self.messageArray.suffix(self.numberOfMessage)
             
             self.configureTableView()
             self.messagesTableView.reloadData()
@@ -125,6 +132,15 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
         
         cell.userNameLabel.text = messageArray[indexPath.row].sender
         cell.messageLabel.text = messageArray[indexPath.row].body
+        cell.userImageView.image = UIImage(named: "avatar")
+        
+        if cell.userNameLabel.text == Auth.auth().currentUser?.email {
+            cell.userImageView.backgroundColor = UIColor.flatLime()
+            cell.messageBackground.backgroundColor = UIColor.flatSkyBlue()
+        } else {
+            cell.userImageView.backgroundColor = UIColor.flatWatermelon()
+            cell.messageBackground.backgroundColor = UIColor.flatGray()
+        }
         
         return cell
     }
@@ -136,7 +152,7 @@ extension ChatViewController : UITextFieldDelegate {
         
         UIView.animate(withDuration: 0.5) {
             
-            self.textBoxHeight.constant = 80 + 50 + 258
+            self.textBoxHeight.constant = 80 + 60 + 258
             self.view.layoutIfNeeded()
         }
     }
