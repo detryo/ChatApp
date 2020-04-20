@@ -20,6 +20,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWE-3g-jUR">
                                 <rect key="frame" x="0.0" y="714" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MYZ-e9-7AL"/>
                                 </constraints>
@@ -321,7 +322,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="epr-1j-uzg"/>
+        <segue reference="wZk-MW-Xzu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LogIn" width="426.66665649414062" height="426.66665649414062"/>
